@@ -44,7 +44,7 @@ class Pawn(BasePiece.BasePiece):
                     target = self.position + direction * i
                     if target < 0 or target > 63:
                         break
-                    if direction in [16] and self.position//8 != 1 or self.position+8 in TeamLoc:
+                    if direction in [16] and (self.position//8 != 1 or self.position+8 in TeamLoc or self.position+8 in EnemyLoc) :
                         break
                     if target in TeamLoc:
                         break
@@ -59,13 +59,14 @@ class Pawn(BasePiece.BasePiece):
                     target = self.position + direction * i
                     if target < 0 or target > 63:
                         break
-                    if direction in [-16] and self.position // 8 != 6 or self.position-8 in TeamLoc:
+                    if direction in [-16] and (self.position // 8 != 6 or self.position-8 in TeamLoc or self.position-8 in EnemyLoc):
                         break
                     if target in TeamLoc:
                         break
                     if target in EnemyLoc:
                         break
                     Moves.append(target)
+
         Moves = Moves + self.PawnEatPawn(EnemyLoc) + self.EnPassant()
         Moves = [L for L in Moves if self.Legalsquares( InitialPositionString, L)]
         return Moves
