@@ -1,13 +1,13 @@
 import pygame
 import Convert
-import Board
+import Boards
 import KingPiece
 
 class MrBot:
     def __init__(self, dimension = 480, screen = pygame.display.set_mode((480,480))):
         self.dimension = dimension
         self.screen = screen
-        self.Boards = Board.InitialBoard(self.dimension, self.screen)
+        self.Board1 = Boards.InitialBoard(self.dimension, self.screen)
 
     #Function to determine the worth of a piece depending on the type and the position on the board
     def RelativePieceValues(self, PieceType, index):
@@ -186,7 +186,7 @@ class MrBot:
             MaxMoveEvaluation = -99999
             bestMove = None
             for K in TotalPossibleMoves:
-                BoardPositionNew = self.Boards.MovingPiece(BoardPosition, K, MoveLog, 0)[0]
+                BoardPositionNew = self.Board1.MovingPiece(BoardPosition, K, MoveLog, 0)[0]
                 if "p" in BoardPositionNew[0:8]:
                     PawnLocation = BoardPositionNew.index("p")
                     BoardPositionNew = BoardPositionNew[:PawnLocation] + "q" + BoardPositionNew[PawnLocation + 1:]
@@ -209,7 +209,7 @@ class MrBot:
             MinMoveEvaluation = 99999
             bestMove = None
             for K in TotalPossibleMoves:
-                BoardPositionNew = self.Boards.MovingPiece(BoardPosition, K, MoveLog, 0)[0]
+                BoardPositionNew = self.Board1.MovingPiece(BoardPosition, K, MoveLog, 0)[0]
                 MoveLogNew = MoveLog + [K]
                 if ("p" in BoardPositionNew[0:8]):
                     PawnLocation = BoardPositionNew.index("p")

@@ -1,5 +1,5 @@
 import pygame
-import Board
+import Boards
 
 class BasePiece:
     def __init__(self, screen, position, colour, dimension, MoveLog):
@@ -48,7 +48,7 @@ class BasePiece:
         WhitePiece = "RHBQKP"
         BlackPiece = "rhbqkp"
 
-        Board1 = Board.InitialBoard(self.dimension,self.screen)
+        Board1 = Boards.InitialBoard(self.dimension,self.screen)
         type = PiecePositions[self.position]
         stringMove = str(self.position).zfill(2) + type + str(NewPosition).zfill(2)
         BoardAfter = Board1.MovingPiece(PiecePositions, stringMove, self.MoveLog,0)[0]
