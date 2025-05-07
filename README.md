@@ -6,3 +6,9 @@
 - To play the game through your web browser, use the following link: https://namho14.itch.io/chess-project-2025
 
 ![image](https://github.com/user-attachments/assets/df615e3e-80e3-4e08-8fdd-8543a5bb51e3)
+![image](https://github.com/user-attachments/assets/e6721231-8dfc-4e44-94ff-5f63d0301be1)
+![image](https://github.com/user-attachments/assets/c2267c44-aadc-48e4-8fee-6cdcc40115bc)
+
+
+
+
