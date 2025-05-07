@@ -22,8 +22,8 @@ async def main():
     Message = ""
     PossibleMoves = 1
     OpponentOptions = True
-    PositionString = "RHBQKB0RPPPPPPPP00000H00000000000000000000000000pppppppprhbqkbhr"
-    mouse_held_down = run = Promotion = EndScreen = Robot = False
+    PositionString = "RHBQKBHRPPPPPPPP00000000000000000000000000000000pppppppprhbqkbhr"
+    mouse_held_down = run = Promotion = EndScreen = Robot = Settings = False
     PiecePressed = WhiteKing = BlackKing = None
     Turn = OptionScreenClick = 0
     Board = Boards.InitialBoard(dimension, screen)
@@ -44,13 +44,12 @@ async def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = True
-
             #if button is pressed
             elif event.type == pygame.MOUSEBUTTONDOWN and not mouse_held_down:
                 pos = pygame.mouse.get_pos()
                 position = int((7 - (pos[1] // (dimension/8))) * 8 + (pos[0] // (dimension/8)))
 
-                if EndScreen == False and OpponentOptions == False:
+                if EndScreen == False and OpponentOptions == False and Settings == False:
                     #Promotion select
                     if Promotion == True:
                         PositionString, Promotion, Turn = Board.PromotionSelect(position,MoveLog,PositionString,Turn)
@@ -128,6 +127,19 @@ async def main():
             if (piece != None):
                 piece.draw()
 
+        if EndScreen == False and OpponentOptions == False and Settings == False:
+            Settings = Board.settingButton(event)
+
+        if Settings == True:
+            Option = Board.settings(event)
+            match Option:
+                case 1:
+                    OpponentOptions = True
+                    Settings = False
+                    OptionScreenClick = pygame.time.get_ticks()
+                case 2:
+                    Settings = False
+
         #Draw promotion if needed
         Board.DrawPromotion(PositionString, screen)
 
@@ -144,7 +156,7 @@ async def main():
         #Option select screen
         if OpponentOptions == True:
             PositionString = "RHBQKBHRPPPPPPPP00000000000000000000000000000000pppppppprhbqkbhr"
-            if pygame.time.get_ticks() - OptionScreenClick >= 200:
+            if pygame.time.get_ticks() - OptionScreenClick >= 150:
                 Option = Board.OptionScreen(event)
                 Turn = 0
                 MoveLog = []

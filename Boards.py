@@ -224,3 +224,58 @@ class InitialBoard:
             elif buttonLevel1Bot.collidepoint(event.pos):
                 return 2
         return 0
+
+    def settings(self,event):
+        Background = pygame.Rect(0, 0, (self.dimension / 8) * 5.5, (self.dimension / 8) * 3.5)
+        Background.center = ((self.dimension / 8) * 4, (self.dimension / 8) * 4.0)
+        pygame.draw.rect(self.screen, (150, 163, 111), Background)
+
+        Text_font = pygame.font.SysFont("Times New Roman", int(45*(self.dimension)/480))
+        Menu = Text_font.render("SETTING", True, (255, 255, 255))
+        MenuRect = Menu.get_rect(center=((self.dimension / 8) * 4, (self.dimension / 8) * 2.75))
+        self.screen.blit(Menu, MenuRect)
+
+        buttonMenuScreen = pygame.Rect(0, 0, (self.dimension / 8) * 4, (self.dimension / 8) * 1)
+        buttonMenuScreen.center = ((self.dimension / 8) * 4, (self.dimension / 8) * 3.75)
+        pygame.draw.rect(self.screen, (217, 217, 145), buttonMenuScreen)
+
+        Text_font = pygame.font.SysFont("Times New Roman", int(30*(self.dimension)/480))
+
+        MenuScreenText = Text_font.render("Menu", True, (0, 0, 0))
+
+        MenuRect = MenuScreenText.get_rect(center=((self.dimension / 8) * 4, (self.dimension / 8) * 3.75))
+        self.screen.blit(MenuScreenText, MenuRect)
+
+        buttonReturnToGame = pygame.Rect(0, 0, (self.dimension / 8) * 4, (self.dimension / 8) * 1)
+        buttonReturnToGame.center = ((self.dimension / 8) * 4, (self.dimension / 8) * 5.00)
+        pygame.draw.rect(self.screen, (217, 217, 145), buttonReturnToGame)
+
+        ReturnGameText = Text_font.render("Return To Game", True, (0, 0, 0))
+
+        MenuRect = ReturnGameText.get_rect(center=((self.dimension / 8) * 4, (self.dimension / 8) * 5.00))
+        self.screen.blit(ReturnGameText, MenuRect)
+
+        if buttonMenuScreen.collidepoint(pygame.mouse.get_pos()):
+            pygame.draw.rect(self.screen, (255, 255, 255), buttonMenuScreen, 3)
+
+        if buttonReturnToGame.collidepoint(pygame.mouse.get_pos()):
+            pygame.draw.rect(self.screen, (255, 255, 255),  buttonReturnToGame, 3)
+
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            if buttonMenuScreen.collidepoint(event.pos):
+                return 1
+            elif buttonReturnToGame.collidepoint(event.pos):
+                return 2
+        return 0
+        print("bob")
+
+    def settingButton(self,event):
+        image = pygame.image.load("PauseButton.png").convert_alpha()
+        image = pygame.transform.scale(image, (self.dimension / 16, self.dimension / 16))
+        self.screen.blit(image, (self.dimension-self.dimension / 16, 0))
+
+        buttonSetting = pygame.Rect(self.dimension-self.dimension / 16, 0,self.dimension / 16,self.dimension / 16)
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            if buttonSetting.collidepoint(event.pos):
+                return True
+        return False
