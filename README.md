@@ -5,3 +5,4 @@
 - This chess game also has an integrated functionality to check if a player's desired move is legal
 - To play the game through your web browser, use the following link: https://namho14.itch.io/chess-project-2025
 
+![image](https://github.com/user-attachments/assets/df615e3e-80e3-4e08-8fdd-8543a5bb51e3)
